@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import BookDetails from './BookDetails'
+import BookDetails from './BookDetails';
 import * as bookActions from '../../actions/bookActions';
 
 
@@ -14,6 +14,7 @@ class BookDetailsPage extends React.Component {
     }
 
     addToCart(book){
+      debugger;
       const item = {
         title: book.title,
         price: book.price
@@ -40,7 +41,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
       fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
-      addToCart: item => dispatch(bookActions.addToCart(item))
     };
 };
 

@@ -23,7 +23,6 @@ class Book extends React.Component{
             <thead>
               <th>
                 <td>Title</td>
-                <td></td>
               </th>
             </thead>
             <tbody>
@@ -32,6 +31,7 @@ class Book extends React.Component{
                 <tr key={i}>
                   <td>{b.title}</td>
                   <td><Link to={`/books/${b.id}`}>View</Link></td>
+                  <td><Link to="/books" onClick={()=>{this.props.deleteBook(b.id)}}>Delete</Link></td>
                 </tr>
               )
             })}
@@ -49,13 +49,15 @@ class Book extends React.Component{
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    books: state.books
+    books: state.books,
+    book: state.book
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createBook: book => dispatch(bookActions.createBook(book))
+    createBook: book => dispatch(bookActions.createBook(book)),
+    deleteBook: bookId => dispatch(bookActions.deleteBook(bookId))
   }
 };
 

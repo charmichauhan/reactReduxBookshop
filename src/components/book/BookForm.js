@@ -4,8 +4,9 @@ const BookForm = (props) => {
     let titleInput, authorInput, priceInput, yearInput = null;
     return (
       <form onSubmit={e => {
+        debugger;
             e.preventDefault();
-            var input = {
+            const input = {
               title: titleInput.value,
               author: authorInput.value,
               price: priceInput.value,
@@ -62,7 +63,7 @@ const BookForm = (props) => {
         <br/>
         <div className="input-group">
           <div className="col-sm-offset-2 col-sm-10">
-            <input type="submit" className="btn btn-default"/>
+            <input type="submit" className="btn btn-primary"/>
           </div>
         </div>
       </form>

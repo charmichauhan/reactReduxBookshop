@@ -1,6 +1,8 @@
 import React from 'react';
+import * as cartActions from '../../actions/cartActions';
+import {connect} from 'react-redux';
 
-const BookDetails = ({book, addToCart}) => {
+const BookDetails = ({book}) => {
     return (
       <div className="media">
         <div className="media-left">
@@ -11,16 +13,30 @@ const BookDetails = ({book, addToCart}) => {
         <div className="media-body">
           <h4 className="media-heading">{book.title}</h4>
           <ul>
-            <li><stron>Author: </stron> {book.author}</li>
-            <li><stron>Price: </stron> ${book.price}</li>
-            <li><stron>Year: </stron> {book.year}</li>
+            <li><strong>Author: </strong> {book.author}</li>
+            <li><strong>Price: </strong> ${book.price}</li>
+            <li><strong>Year: </strong> {book.year}</li>
             <br/>
-            <button className="btn btn-primary" onClick={e => addToCart(book)}>Buy</button>
+            <button className="btn btn-primary" onClick={() => this.props.addToCart(book)}>Buy</button>
           </ul>
         </div>
       </div>
     );
 };
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    book: state.book,
+    items: state.cart,
+    item: state.cart
+  };
+};
 
-export default BookDetails;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: item => dispatch(cartActions.addToCart(item))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetails);
+

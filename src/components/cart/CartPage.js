@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import * as bookActions from '../../actions/bookActions';
-
+import * as cartActions from '../../actions/cartActions';
+import { Link } from 'react-router';
 
 class CartPage extends React.Component {
     constructor(props, context) {
@@ -26,6 +26,7 @@ class CartPage extends React.Component {
                       <tr key={index}>
                         <td>{item.title}</td>
                         <td>{item.price}</td>
+                        <td><Link to="/cart" onClick={()=>{this.props.deleteCart(item.id)}}>Delete</Link></td>
                       </tr>
                     );
                   })}
@@ -43,7 +44,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      fetchCart: bookId => dispatch(bookActions.fetchCart()),
+      fetchCart: bookId => dispatch(cartActions.fetchCart(bookId)),
+      deleteCart: itemId => dispatch(cartActions.deleteCart(itemId)),
     };
 };
 

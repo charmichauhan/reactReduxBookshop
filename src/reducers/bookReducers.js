@@ -16,6 +16,8 @@ export const bookReducer = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_BOOK_BY_ID_SUCCESS':
       return action.book;
+    case 'DELETE_BOOK_BY_ID_SUCCESS':
+      return action.book;
     default:
       return state;
   }
